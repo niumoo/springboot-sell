@@ -10,5 +10,12 @@ import net.codingme.sell.domain.ProductCategory;
  */
 public interface ProductCategoryService {
 
+    /**
+     * 根据 ID 查询商品类目
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     */
     public ProductCategory findById(Integer id) throws Exception;
 }

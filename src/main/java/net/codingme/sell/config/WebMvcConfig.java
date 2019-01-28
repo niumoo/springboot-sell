@@ -48,21 +48,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
         converter.setFastJsonConfig(fastJsonConfig);
         converters.add(converter);
     }
-
-    /**
-     * 添加自定义拦截器
-     * .addPathPatterns("/**")  拦截的请求路径
-     * .excludePathPatterns("/user"); 排除的请求路径
-     *
-     * @param registry
-     */
-    //@Override
-    //public void addInterceptors(InterceptorRegistry registry) {
-    //    registry.addInterceptor(new LogHandlerInterceptor())
-    //            .addPathPatterns("/**")
-    //            .excludePathPatterns("/user");
-    //}
-
     /**
      * 时间转换器
      *
