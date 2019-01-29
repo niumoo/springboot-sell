@@ -2,6 +2,8 @@ package net.codingme.sell.service;
 
 import net.codingme.sell.domain.ProductCategory;
 
+import java.util.List;
+
 /**
  * <p>
  *
@@ -18,4 +20,27 @@ public interface ProductCategoryService {
      * @throws Exception
      */
     public ProductCategory findById(Integer id) throws Exception;
+
+    /**
+     * 查询所有类目
+     * 
+     * @return
+     */
+    List<ProductCategory> findAll();
+
+    /**
+     * 查询 categoryType 在 list 集合中的类目数据
+     * 
+     * @param typeList
+     * @return
+     */
+    List<ProductCategory> findByCategoryTypeIn(List<Integer> typeList);
+
+    /**
+     * 新增类目
+     * 
+     * @param productCategory
+     * @return
+     */
+    ProductCategory save(ProductCategory productCategory);
 }

@@ -1,11 +1,7 @@
 package net.codingme.sell.domain;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-import org.springframework.format.annotation.DateTimeFormat;
-
+import org.hibernate.annotations.DynamicUpdate;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -15,14 +11,15 @@ import java.util.Date;
  * <p>
  * 商品类目表
  *
+ * @DynamicUpdate 动态更新，如时间
  * @Author niujinpeng
  * @Date 2019/1/27 22:44
  */
+@DynamicUpdate
 @Entity
 @Data
 public class ProductCategory {
 
-    /** 类目id */
     @Id
     @GeneratedValue
     private Integer categoryId;

@@ -1,6 +1,5 @@
 package net.codingme.sell.config;
 
-
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
@@ -16,11 +15,7 @@ import java.util.List;
 
 /**
  * <p>
- * 1.使用FastJSON
- * 2.配置时间格式化
- * 3.解决中文乱码
- * 4.添加自定义拦截器
- * 5.时间转换器
+ * 1.使用FastJSON 2.配置时间格式化 3.解决中文乱码 4.添加自定义拦截器 5.时间转换器
  *
  * @Author niujinpeng
  * @Date 2018/12/13 15:35
@@ -38,9 +33,9 @@ public class WebMvcConfig implements WebMvcConfigurer {
         FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
         FastJsonConfig fastJsonConfig = new FastJsonConfig();
         fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat);
-        //日期格式化
+        // 日期格式化
         fastJsonConfig.setDateFormat("yyyy-MM-dd HH:mm:ss");
-        //处理中文乱码问题
+        // 处理中文乱码问题
         List<MediaType> fastMediaTypes = new ArrayList<>();
         fastMediaTypes.add(MediaType.APPLICATION_JSON_UTF8);
 
@@ -48,6 +43,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         converter.setFastJsonConfig(fastJsonConfig);
         converters.add(converter);
     }
+
     /**
      * 时间转换器
      *

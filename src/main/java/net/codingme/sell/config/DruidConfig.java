@@ -26,8 +26,7 @@ import java.util.Map;
 public class DruidConfig {
 
     /**
-     * 因为很多属性是DruidDataSource中独有的，所以需要指定前缀进行松散绑定。
-     * 也可以直接在这里设置，免去配置文件的参数配置
+     * 因为很多属性是DruidDataSource中独有的，所以需要指定前缀进行松散绑定。 也可以直接在这里设置，免去配置文件的参数配置
      */
     @Bean
     @ConfigurationProperties(prefix = "spring.datasource")
@@ -67,6 +66,5 @@ public class DruidConfig {
         bean.setUrlPatterns(Arrays.asList("/*"));
         return bean;
     }
-
 
 }
