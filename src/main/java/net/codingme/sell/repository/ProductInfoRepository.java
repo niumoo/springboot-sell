@@ -8,6 +8,7 @@ import java.util.List;
 
 /**
  * <p>
+ * 商品
  *
  * @Author niujinpeng
  * @Date 2019/1/2823:28
