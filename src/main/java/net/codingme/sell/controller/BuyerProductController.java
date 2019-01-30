@@ -4,6 +4,7 @@ import net.codingme.sell.domain.ProductCategory;
 import net.codingme.sell.domain.ProductInfo;
 import net.codingme.sell.service.ProductCategoryService;
 import net.codingme.sell.service.ProductInfoService;
+import net.codingme.sell.utils.ResultVoUtil;
 import net.codingme.sell.vo.ProductInfoVo;
 import net.codingme.sell.vo.ProductVo;
 import net.codingme.sell.vo.ResultVo;
@@ -63,8 +64,7 @@ public class BuyerProductController {
             productVo.setProductInfoVoList(productInfoVoList);
             productVoList.add(productVo);
         }
-        ResultVo resultVo = ResultVo.success(productVoList);
-        return resultVo;
+        return ResultVoUtil.success(productVoList);
     }
 
     @GetMapping(value = "/list-test")

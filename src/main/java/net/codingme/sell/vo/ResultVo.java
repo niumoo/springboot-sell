@@ -30,23 +30,5 @@ public class ResultVo<T> {
     /** 具体内容 */
     private T data;
 
-    ResultVo(ResultEnum resultEnum) {
-        this.code = resultEnum.getCode();
-        this.msg = resultEnum.getMsg();
-    }
-
-    public static ResultVo success(Object data) {
-        ResultVo resultVo = new ResultVo(ResultEnum.SUCCESS);
-        if (data == null) {
-            return resultVo;
-        }
-        if (data instanceof List) {
-            resultVo.setData(data);
-            return resultVo;
-        }
-        List<Object> objectList = Arrays.asList(data);
-        resultVo.setData(objectList);
-        return resultVo;
-    }
 
 }
