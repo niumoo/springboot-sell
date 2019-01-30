@@ -25,13 +25,13 @@ public class ProductInfoRepositoryTest {
     public void saveTest(){
         ProductInfo productInfo = new ProductInfo();
         productInfo.setProductId(UUID.randomUUID().toString().replace("-", ""));
-        productInfo.setProductName("南瓜粥");
-        productInfo.setProductPrice(new BigDecimal(5.5));
-        productInfo.setProductStock(100);
-        productInfo.setProductDescription("很好喝的一碗粥");
+        productInfo.setProductName("青椒鸡蛋饼");
+        productInfo.setProductPrice(new BigDecimal(3.0));
+        productInfo.setProductStock(400);
+        productInfo.setProductDescription("过路人的美食");
         productInfo.setProductStatus(0);
-        productInfo.setProductIcon("https://www.xxx.com/abc.jpg");
-        productInfo.setCategoryType(1);
+        productInfo.setProductIcon("https://www.xxx.com/1ads.jpg");
+        productInfo.setCategoryType(3);
         ProductInfo result = repository.save(productInfo);
         Assert.assertNotNull(result);
     }
