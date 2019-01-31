@@ -16,10 +16,10 @@ import java.util.UUID;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ProductInfoServiceImplTest {
+public class ProductServiceImplTest {
 
     @Autowired
-    private ProductInfoServiceImpl serviceImplTest;
+    private ProductServiceImpl serviceImplTest;
 
     @Test
     public void findById() {
@@ -44,15 +44,14 @@ public class ProductInfoServiceImplTest {
     public void save() {
         ProductInfo productInfo = new ProductInfo();
         productInfo.setProductId(UUID.randomUUID().toString().replace("-", ""));
-        productInfo.setProductName("小米粥");
-        productInfo.setProductPrice(new BigDecimal(3.5));
-        productInfo.setProductStock(100);
-        productInfo.setProductDescription("口味清淡，清香，健胃消食");
+        productInfo.setProductName("油条");
+        productInfo.setProductPrice(new BigDecimal(1.5));
+        productInfo.setProductStock(50);
+        productInfo.setProductDescription("中国经典美食");
         productInfo.setProductStatus(0);
-        productInfo.setProductIcon("https://www.xxx.com/abcxm.jpg");
+        productInfo.setProductIcon("https://www.xxx.com/a2cxm.jpg");
         productInfo.setCategoryType(1);
         ProductInfo result = serviceImplTest.save(productInfo);
         Assert.assertNotNull(result);
-
     }
 }
