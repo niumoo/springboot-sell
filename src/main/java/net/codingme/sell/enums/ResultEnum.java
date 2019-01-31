@@ -15,11 +15,15 @@ import lombok.*;
 public enum ResultEnum {
 
     /** 操作成功. */
-    SUCCESS(0, "success");
+    SUCCESS(0, "success"),
+    /** 商品不存在 */
+    PRODUCT_NOT_EXIST(10, "商品不存在"),
+    /** 商品库存不足 */
+    PRODUCT_STOCK_ERROR(11, "库存不正确");
 
     /** 状态码 */
     private Integer code;
 
     /** 返回信息 */
-    private String msg;
+    private String message;
 }

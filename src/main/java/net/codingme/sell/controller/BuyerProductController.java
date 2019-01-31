@@ -3,7 +3,7 @@ package net.codingme.sell.controller;
 import net.codingme.sell.domain.ProductCategory;
 import net.codingme.sell.domain.ProductInfo;
 import net.codingme.sell.service.ProductCategoryService;
-import net.codingme.sell.service.ProductInfoService;
+import net.codingme.sell.service.ProductService;
 import net.codingme.sell.utils.ResultVoUtil;
 import net.codingme.sell.vo.ProductInfoVo;
 import net.codingme.sell.vo.ProductVo;
@@ -33,7 +33,7 @@ import java.util.stream.Collectors;
 public class BuyerProductController {
 
     @Autowired
-    private ProductInfoService productInfoService;
+    private ProductService productInfoService;
 
     @Autowired
     private ProductCategoryService productCategoryService;

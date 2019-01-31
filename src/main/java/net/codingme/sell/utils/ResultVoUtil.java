@@ -17,7 +17,7 @@ public class ResultVoUtil {
     public static ResultVo success(Object data) {
         ResultVo resultVo = new ResultVo();
         resultVo.setCode(ResultEnum.SUCCESS.getCode());
-        resultVo.setMsg(ResultEnum.SUCCESS.getMsg());
+        resultVo.setMsg(ResultEnum.SUCCESS.getMessage());
         if (data == null) {
             return resultVo;
         }

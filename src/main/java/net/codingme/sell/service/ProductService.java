@@ -1,6 +1,7 @@
 package net.codingme.sell.service;
 
 import net.codingme.sell.domain.ProductInfo;
+import net.codingme.sell.dto.CartDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -13,7 +14,7 @@ import java.util.List;
  * @Author niujinpeng
  * @Date 2019/1/299:56
  */
-public interface ProductInfoService {
+public interface ProductService {
 
     /**
      * 根据 ID 查询商品
@@ -46,8 +47,18 @@ public interface ProductInfoService {
      */
     public ProductInfo save(ProductInfo info);
 
-    // 加库存
+    /**
+     * 加库存
+     * 
+     * @param cartDtoList
+     */
+    public void increaseStock(List<CartDto> cartDtoList);
 
-    // 减库存
+    /**
+     * 减库存
+     * 
+     * @param cartDtoList
+     */
+    public void decreaseStock(List<CartDto> cartDtoList);
 
 }
