@@ -19,7 +19,13 @@ public enum ResultEnum {
     /** 商品不存在 */
     PRODUCT_NOT_EXIST(10, "商品不存在"),
     /** 商品库存不足 */
-    PRODUCT_STOCK_ERROR(11, "库存不正确");
+    PRODUCT_STOCK_ERROR(11, "库存不正确"),
+
+    /** 订单不存在 */
+    ORDER_NOT_EXIST(20, "订单不存在"),
+
+    /** 商品类型不存在 */
+    PRODUCT_CATEGORY_NOT_EXIST(31, "商品类型不存在");
 
     /** 状态码 */
     private Integer code;

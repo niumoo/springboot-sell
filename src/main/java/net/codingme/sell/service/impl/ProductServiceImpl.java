@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * <p>
@@ -30,8 +31,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductInfo findById(String productId) {
-        ProductInfo productInfo = productInfoRepository.findById(productId).get();
-        return productInfo;
+        Optional<ProductInfo> productInfoOptional = productInfoRepository.findById(productId);
+        return productInfoOptional.orElseThrow(()->new SellException(ResultEnum.PRODUCT_NOT_EXIST));
     }
 
     @Override
@@ -54,15 +55,18 @@ public class ProductServiceImpl implements ProductService {
 
     }
 
+    /**
+     * 扣库存
+     * 
+     * @param cartDtoList
+     */
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void decreaseStock(List<CartDto> cartDtoList) {
         for (CartDto cartDto : cartDtoList) {
             ProductInfo productInfo = findById(cartDto.getProductId());
-            if (productInfo == null) {
-                throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
-            }
             Integer stock = productInfo.getProductStock() - cartDto.getProductQuantity();
+            // 库存不正确
             if (stock < 0) {
                 throw new SellException(ResultEnum.PRODUCT_STOCK_ERROR);
             }

@@ -1,6 +1,8 @@
 package net.codingme.sell.service.impl;
 
 import net.codingme.sell.domain.ProductCategory;
+import net.codingme.sell.enums.ResultEnum;
+import net.codingme.sell.exception.SellException;
 import net.codingme.sell.repository.ProductCategoryRepository;
 import net.codingme.sell.service.ProductCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * <p>
@@ -24,8 +27,8 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 
     @Override
     public ProductCategory findById(Integer id) throws Exception {
-        ProductCategory productCategory = this.productCategoryRepository.findById(id).get();
-        return productCategory;
+        Optional<ProductCategory> productCategoryOptional = this.productCategoryRepository.findById(id);
+        return productCategoryOptional.orElseThrow(()-> new SellException(ResultEnum.PRODUCT_CATEGORY_NOT_EXIST));
     }
 
     @Override
