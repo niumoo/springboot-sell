@@ -1,7 +1,7 @@
 package net.codingme.sell.service;
 
 import net.codingme.sell.domain.ProductInfo;
-import net.codingme.sell.dto.CartDto;
+import net.codingme.sell.dto.CartDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -52,13 +52,13 @@ public interface ProductService {
      * 
      * @param cartDtoList
      */
-    public void increaseStock(List<CartDto> cartDtoList);
+    public void increaseStock(List<CartDTO> cartDtoList);
 
     /**
      * 减库存
      * 
      * @param cartDtoList
      */
-    public void decreaseStock(List<CartDto> cartDtoList);
+    public void decreaseStock(List<CartDTO> cartDtoList);
 
 }

@@ -1,7 +1,8 @@
 package net.codingme.sell.service.impl;
 
+import lombok.extern.slf4j.Slf4j;
 import net.codingme.sell.domain.ProductInfo;
-import net.codingme.sell.dto.CartDto;
+import net.codingme.sell.dto.CartDTO;
 import net.codingme.sell.enums.ProductStatusEnum;
 import net.codingme.sell.enums.ResultEnum;
 import net.codingme.sell.exception.SellException;
@@ -24,6 +25,7 @@ import java.util.Optional;
  * @Date 2019/1/29 9:58
  */
 @Service
+@Slf4j
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
@@ -50,9 +52,22 @@ public class ProductServiceImpl implements ProductService {
         return productInfoRepository.save(productInfo);
     }
 
+    /**
+     * 加库存
+     * @param cartDtoList
+     */
     @Override
-    public void increaseStock(List<CartDto> cartDtoList) {
-
+    public void increaseStock(List<CartDTO> cartDtoList) {
+        for (CartDTO cartDTO : cartDtoList) {
+            ProductInfo productInfo = findById(cartDTO.getProductId());
+            Integer stock = productInfo.getProductStock() + cartDTO.getProductQuantity();
+            productInfo.setProductStock(stock);
+            ProductInfo updateReult = productInfoRepository.save(productInfo);
+            if (updateReult == null){
+                log.info("【增加库存】增加库存失败，cartDTO={}",cartDTO);
+                throw new SellException(ResultEnum.PRODUCT_STOCK_UPDATE_FIELD);
+            }
+        }
     }
 
     /**
@@ -62,8 +77,8 @@ public class ProductServiceImpl implements ProductService {
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void decreaseStock(List<CartDto> cartDtoList) {
-        for (CartDto cartDto : cartDtoList) {
+    public void decreaseStock(List<CartDTO> cartDtoList) {
+        for (CartDTO cartDto : cartDtoList) {
             ProductInfo productInfo = findById(cartDto.getProductId());
             Integer stock = productInfo.getProductStock() - cartDto.getProductQuantity();
             // 库存不正确
