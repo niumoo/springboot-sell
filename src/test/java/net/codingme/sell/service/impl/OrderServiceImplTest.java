@@ -2,12 +2,15 @@ package net.codingme.sell.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import net.codingme.sell.domain.OrderDetail;
-import net.codingme.sell.dto.CartDto;
-import net.codingme.sell.dto.OrderDto;
+import net.codingme.sell.dto.OrderDTO;
+import net.codingme.sell.enums.OrderStatusEnum;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
@@ -25,7 +28,7 @@ public class OrderServiceImplTest {
     @Test
     public void save() {
         // 订单信息
-        OrderDto orderDto = new OrderDto();
+        OrderDTO orderDto = new OrderDTO();
         orderDto.setBuyerName("刘备");
         orderDto.setBuyerAddress("成都");
         orderDto.setBuyerPhone("18318318318");
@@ -43,18 +46,31 @@ public class OrderServiceImplTest {
         orderDetails.add(o2);
         orderDto.setOrderDetailList(orderDetails);
 
-        OrderDto reuslt = orderService.insert(orderDto);
+        OrderDTO reuslt = orderService.insert(orderDto);
         log.info("【创建订单】result={}", reuslt);
     }
 
     @Test
-    public void findOne() {}
+    public void findOne() {
+        String orderId = "201901312355489322375271";
+        OrderDTO orderDTO = orderService.findOne(orderId);
+        Assert.assertNotNull(orderDTO);
+    }
 
     @Test
-    public void findList() {}
+    public void findList() {
+        PageRequest pageRequest = new PageRequest(0, 2);
+        Page<OrderDTO> orderDTOPage = orderService.findList(OPEN_ID, pageRequest);
+        Assert.assertNotEquals(0, orderDTOPage.getTotalElements());
+    }
 
     @Test
-    public void cancel() {}
+    public void cancel() {
+        String orderId = "20190131235548932237527";
+        OrderDTO orderDTO = orderService.findOne(orderId);
+        OrderDTO cancelResult = orderService.cancel(orderDTO);
+        Assert.assertEquals(OrderStatusEnum.CANCEL.getCode(),cancelResult.getOrderStatus());
+    }
 
     @Test
     public void finish() {}

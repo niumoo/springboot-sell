@@ -14,7 +14,7 @@ import java.util.List;
  * @Date 2019/1/31 16:46
  */
 @Data
-public class OrderDto extends OrderMaster {
+public class OrderDTO extends OrderMaster {
 
     /** 订单详情 */
     private List<OrderDetail> orderDetailList;

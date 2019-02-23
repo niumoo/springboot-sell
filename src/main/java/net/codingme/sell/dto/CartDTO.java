@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CartDto {
+public class CartDTO {
 
     /** 商品 id */
     private String productId;

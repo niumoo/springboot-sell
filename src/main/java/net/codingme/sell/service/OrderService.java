@@ -1,6 +1,6 @@
 package net.codingme.sell.service;
 
-import net.codingme.sell.dto.OrderDto;
+import net.codingme.sell.dto.OrderDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -13,21 +13,52 @@ import org.springframework.data.domain.Pageable;
  */
 public interface OrderService {
 
-    /** 创建订单 */
-    OrderDto insert(OrderDto orderDto);
+    /**
+     * 创建订单
+     * 
+     * @param orderDto
+     * @return
+     */
+    OrderDTO insert(OrderDTO orderDto);
 
-    /** 查询单个订单 */
-    OrderDto findOne(String orderId);
+    /**
+     * 查询单个订单
+     * 
+     * @param orderId
+     * @return
+     */
+    OrderDTO findOne(String orderId);
 
-    /** 查询订单列表 */
-    Page<OrderDto> findList(String buyerOpenid, Pageable pageable);
+    /**
+     * 查询订单列表
+     * 
+     * @param buyerOpenid
+     * @param pageable
+     * @return
+     */
+    Page<OrderDTO> findList(String buyerOpenid, Pageable pageable);
 
-    /** 取消订单 */
-    OrderDto cancel(OrderDto orderDto);
+    /**
+     * 取消订单
+     * 
+     * @param orderDto
+     * @return
+     */
+    OrderDTO cancel(OrderDTO orderDto);
 
-    /** 完结订单 */
-    OrderDto finish(OrderDto orderDto);
+    /**
+     * 完结订单
+     * 
+     * @param orderDto
+     * @return
+     */
+    OrderDTO finish(OrderDTO orderDto);
 
-    /** 支付订单 */
-    OrderDto paid(OrderDto orderDto);
+    /**
+     * 支付订单
+     * 
+     * @param orderDto
+     * @return
+     */
+    OrderDTO paid(OrderDTO orderDto);
 }
