@@ -34,6 +34,8 @@ public enum ResultEnum {
     ORDER_UPDATE_FIELD(23, "订单更新失败"),
     /** 订单中商品为空 */
     ORDER_DETAIL_EMPTY(24, "订单中商品为空"),
+    /** 订单支付状态不正确 */
+    ORDER_PAY_STATUS_ERROR(25, "订单支付状态不正确"),
 
     /** 商品类型不存在 */
     PRODUCT_CATEGORY_NOT_EXIST(31, "商品类型不存在");

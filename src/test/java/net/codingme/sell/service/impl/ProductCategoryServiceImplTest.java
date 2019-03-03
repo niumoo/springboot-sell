@@ -21,7 +21,7 @@ public class ProductCategoryServiceImplTest {
 
     @Test
     public void findById() throws Exception {
-        ProductCategory productCategory = categoryService.findById(1);
+        ProductCategory productCategory = categoryService.findById(3);
         Assert.assertEquals(new Integer(1), productCategory.getCategoryId());
     }
 
