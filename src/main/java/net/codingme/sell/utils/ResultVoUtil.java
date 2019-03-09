@@ -18,15 +18,7 @@ public class ResultVoUtil {
         ResultVo resultVo = new ResultVo();
         resultVo.setCode(ResultEnum.SUCCESS.getCode());
         resultVo.setMsg(ResultEnum.SUCCESS.getMessage());
-        if (data == null) {
-            return resultVo;
-        }
-        if (data instanceof List) {
-            resultVo.setData(data);
-            return resultVo;
-        }
-        List<Object> objectList = Arrays.asList(data);
-        resultVo.setData(objectList);
+        resultVo.setData(data);
         return resultVo;
     }
 
@@ -34,11 +26,16 @@ public class ResultVoUtil {
         return success(null);
     }
 
-    public static ResultVo eerror(Integer code, String msg) {
+    public static ResultVo error(Integer code, String msg) {
         ResultVo resultVo = new ResultVo();
         resultVo.setCode(code);
         resultVo.setMsg(msg);
         return resultVo;
     }
+
+    public static ResultVo error(ResultEnum resultEnum){
+        return error(resultEnum.getCode(),resultEnum.getMessage());
+    }
+
 
 }

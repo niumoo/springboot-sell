@@ -47,7 +47,7 @@ public class OrderServiceImplTest {
         orderDetails.add(o2);
         orderDto.setOrderDetailList(orderDetails);
 
-        OrderDTO reuslt = orderService.insert(orderDto);
+        OrderDTO reuslt = orderService.create(orderDto);
         log.info("【创建订单】result={}", reuslt);
     }
 

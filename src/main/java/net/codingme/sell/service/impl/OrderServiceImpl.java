@@ -61,7 +61,7 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public OrderDTO insert(OrderDTO orderDto) {
+    public OrderDTO create(OrderDTO orderDto) {
 
         // 1. 查询商品（数量，价格）
         String orderId = KeyUtil.getUniqueKey();
@@ -188,6 +188,7 @@ public class OrderServiceImpl implements OrderService {
      * @return1
      */
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public OrderDTO finish(OrderDTO orderDto) {
         // 判断订单状态
         if (!orderDto.getOrderStatus().equals(OrderStatusEnum.NEW.getCode())) {
@@ -209,6 +210,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public OrderDTO paid(OrderDTO orderDto) {
         // 判断订单状态
         if (!orderDto.getOrderStatus().equals(OrderStatusEnum.NEW.getCode())) {

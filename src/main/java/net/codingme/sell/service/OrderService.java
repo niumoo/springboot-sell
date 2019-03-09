@@ -19,7 +19,7 @@ public interface OrderService {
      * @param orderDto
      * @return
      */
-    OrderDTO insert(OrderDTO orderDto);
+    OrderDTO create(OrderDTO orderDto);
 
     /**
      * 查询单个订单
