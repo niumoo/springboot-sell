@@ -15,7 +15,11 @@ import java.util.List;
 
 /**
  * <p>
- * 1.使用FastJSON 2.配置时间格式化 3.解决中文乱码 4.添加自定义拦截器 5.时间转换器
+ * 1.使用FastJSON <br/>
+ * 2.配置时间格式化 <br/>
+ * 3.解决中文乱码 <br/>
+ * 4.添加自定义拦截器 <br/>
+ * 5.时间转换器
  *
  * @Author niujinpeng
  * @Date 2018/12/13 15:35

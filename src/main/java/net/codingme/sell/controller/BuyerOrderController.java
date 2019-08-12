@@ -97,6 +97,7 @@ public class BuyerOrderController {
     @GetMapping("/detail")
     public ResultVo detail(@RequestParam(value = "openid", required = true) String opendid,
         @RequestParam(value = "orderId", required = true) String orderId) {
+        // TODO 不安全的做法，改进
         OrderDTO orderDTO = buyerService.findOrderOne(opendid, orderId);
         return ResultVoUtil.success(orderDTO);
     }
@@ -110,8 +111,9 @@ public class BuyerOrderController {
      */
     @PostMapping("/cancel")
     public ResultVo cancel(@RequestParam(value = "openid", required = true) String openid,
-        //@RequestParam(value = "orderId", required = true,
+        // @RequestParam(value = "orderId", required = true,
         @NotEmpty(message = "订单id不能为空") String orderId) {
+        // TODO 不安全的做法，改进
         buyerService.cancelOrder(openid, orderId);
         return ResultVoUtil.success();
     }

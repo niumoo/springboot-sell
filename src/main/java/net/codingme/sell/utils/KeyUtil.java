@@ -6,7 +6,7 @@ import java.util.Random;
 
 /**
  * <p>
- * 
+ * 主键生成工具
  *
  * @Author niujinpeng
  * @Date 2019/1/31 17:28
@@ -14,6 +14,7 @@ import java.util.Random;
 public class KeyUtil {
 
     private static SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+
     /**
      * 生成唯一主键 格式：时间+随机数
      * 
