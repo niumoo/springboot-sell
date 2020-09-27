@@ -1,16 +1,16 @@
 package net.codingme.sell.domain;
 
-import lombok.Data;
-import net.codingme.sell.enums.OrderStatusEnum;
-import net.codingme.sell.enums.PayStatusEnum;
-import org.hibernate.annotations.DynamicUpdate;
+import java.math.BigDecimal;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Transient;
-import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
+
+import org.hibernate.annotations.DynamicUpdate;
+
+import lombok.Data;
+import net.codingme.sell.enums.OrderStatusEnum;
+import net.codingme.sell.enums.PayStatusEnum;
 
 /**
  * <p>

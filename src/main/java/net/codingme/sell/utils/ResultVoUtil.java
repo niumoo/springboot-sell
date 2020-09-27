@@ -3,9 +3,6 @@ package net.codingme.sell.utils;
 import net.codingme.sell.enums.ResultEnum;
 import net.codingme.sell.vo.ResultVo;
 
-import java.util.Arrays;
-import java.util.List;
-
 /**
  * <p>
  *
@@ -33,9 +30,8 @@ public class ResultVoUtil {
         return resultVo;
     }
 
-    public static ResultVo error(ResultEnum resultEnum){
-        return error(resultEnum.getCode(),resultEnum.getMessage());
+    public static ResultVo error(ResultEnum resultEnum) {
+        return error(resultEnum.getCode(), resultEnum.getMessage());
     }
-
 
 }

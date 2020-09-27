@@ -1,11 +1,12 @@
 package net.codingme.sell.converter;
 
-import net.codingme.sell.domain.OrderMaster;
-import net.codingme.sell.dto.OrderDTO;
-import org.springframework.beans.BeanUtils;
-
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.springframework.beans.BeanUtils;
+
+import net.codingme.sell.domain.OrderMaster;
+import net.codingme.sell.dto.OrderDTO;
 
 /**
  * <p>

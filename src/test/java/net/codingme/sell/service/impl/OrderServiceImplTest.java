@@ -1,5 +1,6 @@
 package net.codingme.sell.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import net.codingme.sell.domain.OrderDetail;
 import net.codingme.sell.dto.OrderDTO;
@@ -39,16 +40,23 @@ public class OrderServiceImplTest {
         ArrayList<OrderDetail> orderDetails = new ArrayList<>();
         OrderDetail o1 = new OrderDetail();
         o1.setProductId("057f430a92944a3f9b68c80a54d98a8a");
-        o1.setProductQuantity(1);
+        o1.setProductQuantity(2);
         OrderDetail o2 = new OrderDetail();
         o2.setProductId("184dcec6e5824b61b04a43782e5db3be");
-        o2.setProductQuantity(2);
+        o2.setProductQuantity(1);
         orderDetails.add(o1);
         orderDetails.add(o2);
         orderDto.setOrderDetailList(orderDetails);
 
         OrderDTO reuslt = orderService.create(orderDto);
         log.info("【创建订单】result={}", reuslt);
+    }
+
+    @Test
+    public void test(){
+        for (int i = 0; i < 20; i++) {
+            save();
+        }
     }
 
     @Test
@@ -66,11 +74,19 @@ public class OrderServiceImplTest {
     }
 
     @Test
+    public void findListAll() {
+        PageRequest pageRequest = new PageRequest(0, 2);
+        Page<OrderDTO> orderDTOPage = orderService.findList(pageRequest);
+        // Assert.assertNotEquals(0, orderDTOPage.getTotalElements());
+        Assert.assertTrue("查询所有的订单列表", orderDTOPage.getTotalElements() < 0);
+    }
+
+    @Test
     public void cancel() {
         String orderId = "20190131235548932237527";
         OrderDTO orderDTO = orderService.findOne(orderId);
         OrderDTO cancelResult = orderService.cancel(orderDTO);
-        Assert.assertEquals(OrderStatusEnum.CANCEL.getCode(),cancelResult.getOrderStatus());
+        Assert.assertEquals(OrderStatusEnum.CANCEL.getCode(), cancelResult.getOrderStatus());
     }
 
     @Test
@@ -78,7 +94,7 @@ public class OrderServiceImplTest {
         String orderId = "20190131235548932237527";
         OrderDTO orderDTO = orderService.findOne(orderId);
         OrderDTO result = orderService.finish(orderDTO);
-        Assert.assertEquals(OrderStatusEnum.FINISHED.getCode(),result.getOrderStatus());
+        Assert.assertEquals(OrderStatusEnum.FINISHED.getCode(), result.getOrderStatus());
     }
 
     @Test
@@ -86,6 +102,6 @@ public class OrderServiceImplTest {
         String orderId = "20190131235548932237527";
         OrderDTO orderDTO = orderService.findOne(orderId);
         OrderDTO result = orderService.paid(orderDTO);
-        Assert.assertEquals(PayStatusEnum.SUCCESS.getCode(),result.getPayStatus());
+        Assert.assertEquals(PayStatusEnum.SUCCESS.getCode(), result.getPayStatus());
     }
 }

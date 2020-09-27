@@ -1,11 +1,13 @@
 package net.codingme.sell.domain;
 
-import lombok.Data;
-import org.hibernate.annotations.DynamicUpdate;
+import java.math.BigDecimal;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.math.BigDecimal;
+
+import org.hibernate.annotations.DynamicUpdate;
+
+import lombok.Data;
 
 /**
  * <p>

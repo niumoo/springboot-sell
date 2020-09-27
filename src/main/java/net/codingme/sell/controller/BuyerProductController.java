@@ -1,5 +1,17 @@
 package net.codingme.sell.controller;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import net.codingme.sell.domain.ProductCategory;
 import net.codingme.sell.domain.ProductInfo;
 import net.codingme.sell.service.ProductCategoryService;
@@ -8,17 +20,6 @@ import net.codingme.sell.utils.ResultVoUtil;
 import net.codingme.sell.vo.ProductInfoVo;
 import net.codingme.sell.vo.ProductVo;
 import net.codingme.sell.vo.ResultVo;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * <p>

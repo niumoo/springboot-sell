@@ -1,5 +1,20 @@
 package net.codingme.sell.service.impl;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
+
 import lombok.extern.slf4j.Slf4j;
 import net.codingme.sell.converter.OrderMasterToOrderDTOConverter;
 import net.codingme.sell.domain.OrderDetail;
@@ -16,22 +31,6 @@ import net.codingme.sell.repository.OrderMasterRepository;
 import net.codingme.sell.service.OrderService;
 import net.codingme.sell.service.ProductService;
 import net.codingme.sell.utils.KeyUtil;
-import org.junit.jupiter.api.Order;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.CollectionUtils;
-
-import javax.xml.transform.Result;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -138,6 +137,21 @@ public class OrderServiceImpl implements OrderService {
     }
 
     /**
+     * 查询所有订单列表
+     * 
+     * @param pageable
+     * @return
+     */
+    @Override
+    public Page<OrderDTO> findList(Pageable pageable) {
+        Page<OrderMaster> orderMasterPage = orderMasterRepository.findAll(pageable);
+        List<OrderMaster> orderMasters = orderMasterPage.getContent();
+        List<OrderDTO> orderDTOS = OrderMasterToOrderDTOConverter.convert(orderMasters);
+        long total = orderMasterPage.getTotalElements();
+        return new PageImpl<OrderDTO>(orderDTOS, pageable, total);
+    }
+
+    /**
      * 取消订单
      * 
      * @param orderDto
@@ -176,7 +190,7 @@ public class OrderServiceImpl implements OrderService {
 
         // 如果已经支付，退款
         if (orderDto.getPayStatus().equals(PayStatusEnum.SUCCESS.getCode())) {
-            // TODO
+            // TODO 退款
         }
         return orderDto;
     }
@@ -227,7 +241,7 @@ public class OrderServiceImpl implements OrderService {
         // 修改支付状态
         orderDto.setPayStatus(PayStatusEnum.SUCCESS.getCode());
         OrderMaster orderMaster = new OrderMaster();
-        BeanUtils.copyProperties(orderDto,orderMaster);
+        BeanUtils.copyProperties(orderDto, orderMaster);
         OrderMaster updateResult = orderMasterRepository.save(orderMaster);
         if (updateResult == null) {
             log.error("【支付订单】订单支付状态更新失败，orderMaster={}", orderMaster);

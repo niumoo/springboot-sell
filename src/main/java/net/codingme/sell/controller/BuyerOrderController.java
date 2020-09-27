@@ -1,5 +1,19 @@
 package net.codingme.sell.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+
 import lombok.extern.slf4j.Slf4j;
 import net.codingme.sell.converter.OrderFormToOrderDTOConverter;
 import net.codingme.sell.dto.OrderDTO;
@@ -10,18 +24,6 @@ import net.codingme.sell.service.BuyerService;
 import net.codingme.sell.service.OrderService;
 import net.codingme.sell.utils.ResultVoUtil;
 import net.codingme.sell.vo.ResultVo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.util.CollectionUtils;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-import org.thymeleaf.util.StringUtils;
-
-import javax.validation.Valid;
-import javax.validation.constraints.NotEmpty;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * <p>
@@ -96,8 +98,9 @@ public class BuyerOrderController {
      */
     @GetMapping("/detail")
     public ResultVo detail(@RequestParam(value = "openid", required = true) String opendid,
-        @RequestParam(value = "orderId", required = true) String orderId) {
-        // TODO 不安全的做法，改进
+        // @RequestParam(value = "orderId", required = true)
+        @NotEmpty(message = "订单id不能为空") String orderId) {
+        // 不安全的做法，改进到findOrderOne
         OrderDTO orderDTO = buyerService.findOrderOne(opendid, orderId);
         return ResultVoUtil.success(orderDTO);
     }
@@ -111,9 +114,9 @@ public class BuyerOrderController {
      */
     @PostMapping("/cancel")
     public ResultVo cancel(@RequestParam(value = "openid", required = true) String openid,
-        // @RequestParam(value = "orderId", required = true,
+        // @RequestParam(value = "orderId", required = true)
         @NotEmpty(message = "订单id不能为空") String orderId) {
-        // TODO 不安全的做法，改进
+        // 不安全的做法，cancelOrder
         buyerService.cancelOrder(openid, orderId);
         return ResultVoUtil.success();
     }

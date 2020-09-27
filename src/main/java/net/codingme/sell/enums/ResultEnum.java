@@ -1,6 +1,8 @@
 package net.codingme.sell.enums;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /**
  * <p>
@@ -12,14 +14,14 @@ import lombok.*;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public enum ResultEnum {
+public enum ResultEnum implements CodeEnum {
 
     /** -1 未知错误 */
     UNKNOW_ERROR(-1, "未知错误"),
     /** 操作成功. */
     SUCCESS(0, "成功"),
-    /** 该订单不属于当前用户*/
-    ORDER_OWNER_ERROR(7,"该订单不属于当前用户"),
+    /** 该订单不属于当前用户 */
+    ORDER_OWNER_ERROR(7, "该订单不属于当前用户"),
     /** 购物车不能为空 */
     CART_EMPTY(8, "购物车不能为空"),
     /** 参数检验失败 */
@@ -45,7 +47,9 @@ public enum ResultEnum {
     /** 订单中商品为空 */
     ORDER_DETAIL_EMPTY(24, "订单中商品为空"),
     /** 订单支付状态不正确 */
-    ORDER_PAY_STATUS_ERROR(25, "订单支付状态不正确");
+    ORDER_PAY_STATUS_ERROR(25, "订单支付状态不正确"),
+    /** 订单已取消 */
+    ORDER_CANCEL_SUCCESS(26, "订单已取消");
 
     /** 状态码 */
     private Integer code;

@@ -1,9 +1,10 @@
 package net.codingme.sell.vo;
 
-import com.alibaba.fastjson.annotation.JSONField;
-import lombok.Data;
-
 import java.util.List;
+
+import com.alibaba.fastjson.annotation.JSONField;
+
+import lombok.Data;
 
 /**
  * <p>

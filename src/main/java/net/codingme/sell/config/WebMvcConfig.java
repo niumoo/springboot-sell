@@ -1,8 +1,8 @@
 package net.codingme.sell.config;
 
-import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.alibaba.fastjson.support.config.FastJsonConfig;
-import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.http.MediaType;
@@ -10,8 +10,9 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.alibaba.fastjson.support.config.FastJsonConfig;
+import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 
 /**
  * <p>
@@ -58,4 +59,13 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addConverter(new ConverterDate());
     }
 
+    /**
+     * 拦截器
+     * 
+     * @param registry
+     */
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        // registry.addInterceptor(new SellHandlerInterceptor()).addPathPatterns("/**");
+    }
 }

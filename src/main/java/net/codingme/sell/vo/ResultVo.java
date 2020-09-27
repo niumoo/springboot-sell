@@ -3,11 +3,6 @@ package net.codingme.sell.vo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import net.codingme.sell.enums.ResultEnum;
-
-import javax.xml.transform.Result;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * <p>
@@ -29,6 +24,5 @@ public class ResultVo<T> {
 
     /** 具体内容 */
     private T data;
-
 
 }

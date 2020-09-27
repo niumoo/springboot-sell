@@ -1,5 +1,14 @@
 package net.codingme.sell.service.impl;
 
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import lombok.extern.slf4j.Slf4j;
 import net.codingme.sell.domain.ProductInfo;
 import net.codingme.sell.dto.CartDTO;
@@ -8,14 +17,6 @@ import net.codingme.sell.enums.ResultEnum;
 import net.codingme.sell.exception.SellException;
 import net.codingme.sell.repository.ProductInfoRepository;
 import net.codingme.sell.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.Optional;
 
 /**
  * <p>
@@ -34,7 +35,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductInfo findById(String productId) {
         Optional<ProductInfo> productInfoOptional = productInfoRepository.findById(productId);
-        return productInfoOptional.orElseThrow(()->new SellException(ResultEnum.PRODUCT_NOT_EXIST));
+        return productInfoOptional.orElseThrow(() -> new SellException(ResultEnum.PRODUCT_NOT_EXIST));
     }
 
     @Override
@@ -54,6 +55,7 @@ public class ProductServiceImpl implements ProductService {
 
     /**
      * 加库存
+     * 
      * @param cartDtoList
      */
     @Override
@@ -63,8 +65,8 @@ public class ProductServiceImpl implements ProductService {
             Integer stock = productInfo.getProductStock() + cartDTO.getProductQuantity();
             productInfo.setProductStock(stock);
             ProductInfo updateReult = productInfoRepository.save(productInfo);
-            if (updateReult == null){
-                log.info("【增加库存】增加库存失败，cartDTO={}",cartDTO);
+            if (updateReult == null) {
+                log.info("【增加库存】增加库存失败，cartDTO={}", cartDTO);
                 throw new SellException(ResultEnum.PRODUCT_STOCK_UPDATE_FIELD);
             }
         }

@@ -1,17 +1,16 @@
 package net.codingme.sell.converter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.alibaba.fastjson.JSON;
+
 import lombok.extern.slf4j.Slf4j;
 import net.codingme.sell.domain.OrderDetail;
 import net.codingme.sell.dto.OrderDTO;
 import net.codingme.sell.enums.ResultEnum;
 import net.codingme.sell.exception.SellException;
 import net.codingme.sell.form.OrderForm;
-import org.springframework.util.CollectionUtils;
-
-import javax.validation.constraints.NotEmpty;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * <p>

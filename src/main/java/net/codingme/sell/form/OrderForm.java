@@ -1,8 +1,8 @@
 package net.codingme.sell.form;
 
-import lombok.Data;
-
 import javax.validation.constraints.NotEmpty;
+
+import lombok.Data;
 
 /**
  * <p>

@@ -1,10 +1,11 @@
 package net.codingme.sell.domain;
 
-import lombok.Data;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.util.Date;
+
+import lombok.Data;
 
 /**
  * <p>

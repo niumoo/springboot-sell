@@ -2,7 +2,6 @@ package net.codingme.sell.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
 
 /**
  * 商品状态
@@ -11,7 +10,7 @@ import lombok.Setter;
  */
 @Getter
 @AllArgsConstructor
-public enum ProductStatusEnum {
+public enum ProductStatusEnum implements CodeEnum {
 
     /** 商品上架状态. */
     UP(0, "在架"),

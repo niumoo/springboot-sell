@@ -2,7 +2,6 @@ package net.codingme.sell.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
 
 /**
  * <p>
@@ -12,7 +11,7 @@ import lombok.Setter;
  */
 @AllArgsConstructor
 @Getter
-public enum OrderStatusEnum {
+public enum OrderStatusEnum implements CodeEnum {
     /** 订单状态，新下单 */
     NEW(0, "新订单"),
     /** 订单状态，完毕 */

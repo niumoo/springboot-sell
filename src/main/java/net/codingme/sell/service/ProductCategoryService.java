@@ -1,8 +1,8 @@
 package net.codingme.sell.service;
 
-import net.codingme.sell.domain.ProductCategory;
-
 import java.util.List;
+
+import net.codingme.sell.domain.ProductCategory;
 
 /**
  * <p>
